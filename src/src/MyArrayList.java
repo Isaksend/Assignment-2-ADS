@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 
-public class MyArrayList<T> implements MyList<T> {
+public class MyArrayList<T extends Comparable<T>>  implements MyList<T> {
     private Object[] els;
     private int size;
     private void ensureCapacity() {
@@ -109,7 +109,18 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void sort() {
-
+        for (int i = 1; i < size; i++) {
+            T key = elementData(i);
+            int j = i - 1;
+            //Insertion sort
+            // Move elements that are greater than key to one position ahead
+            // of their current position
+            while (j >= 0 && elementData(j).compareTo(key) > 0) {
+                els[j + 1] = els[j];
+                j--;
+            }
+            els[j + 1] = key;
+        }
     }
 
     @Override
