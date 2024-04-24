@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
@@ -42,5 +43,17 @@ public class Main {
         for (String item : myLinkedList) {
             System.out.println(item);
         }
+        // Cleaning list
+        myList.clear();
+        System.out.println("List cleared. The size of list: " + myList.size());
+
+        MyStack<String> stack = new MyStack<>();
+        stack.push("5");
+        stack.push("8");
+        stack.push("12");
+        System.out.println("The size of stack: " + stack.size());
+        System.out.println("The peek of stack: " + stack.peek());
+        stack.pop();
+        System.out.println("The peek of stack: " + stack.peek());
     }
 }
