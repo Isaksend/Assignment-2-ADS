@@ -1,5 +1,5 @@
+import java.sql.Array;
 import java.util.Iterator;
-
 import java.util.NoSuchElementException;
 
 
@@ -14,8 +14,10 @@ public class MyArrayList<T> implements MyList<T> {
             els = newEls;
         }
     }
-
-
+    @SuppressWarnings("unchecked")
+    private T elementData(int index) {
+        return (T) els[index];
+    }
     public MyArrayList(){
         els = new Object[10];
         size = 0;
@@ -35,47 +37,74 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T item) {
-
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        ensureCapacity();
+        // Move elements to right
+        for (int i = size; i > index; i--) {
+            els[i] = els[i - 1];
+        }
+        els[index] = item;
+        size++;
     }
 
     @Override
     public void addFirst(T item) {
-
+        add(0, item);
     }
 
     @Override
     public void addLast(T item) {
-
+        add(item);
     }
 
     @Override
     public T get(int index) {
-        return null;
+        if (index >= size || index < 0){
+            throw new IndexOutOfBoundsException();
+        }
+        return elementData(index);
+
     }
 
     @Override
     public T getFirst() {
-        return null;
+        return get(0);
     }
 
     @Override
     public T getLast() {
-        return null;
+        return get(size-1);
     }
 
     @Override
-    public void remove(int index) {
-
+    public T remove(int index) {
+        if(index >= size || index < 0){
+            throw new IndexOutOfBoundsException();
+        }
+        T item = elementData(index);
+        for (int i = index; i < size-1; i++){
+            els[i] =  els[i+1];
+        }
+        els[--size] = null;
+        return item;
     }
 
     @Override
     public void removeFirst() {
-
+        if (size == 0){
+            throw new NoSuchElementException();
+        }
+        remove(0);
     }
 
     @Override
     public void removeLast() {
-
+        if (size == 0){
+            throw new NoSuchElementException();
+        }
+        remove(size-1);
     }
 
     @Override
@@ -85,36 +114,68 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public int indexOf(Object object) {
-        return 0;
+        for (int i=0; i<size; i++){
+            if (object.equals(els[i])){
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object object) {
-        return 0;
+        for (int i = size-1; i >= 0; i--){
+            if (object.equals(els[i])){
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public boolean exists(Object object) {
-        return false;
+        return indexOf(object) >= 0;
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] newArray = new Object[size];
+        for (int i=0; i < size; i++){
+            newArray[i] = els[i];
+        }
+        return newArray;
     }
 
     @Override
     public void clear() {
-
+        for (int i = 0; i<size; i++){
+            els[i] = null;
+        }
+        size = 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new Iterator<T>() {
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()){
+                    throw new NoSuchElementException();
+                }
+                return elementData(currentIndex++);
+            }
+        };
     }
 }

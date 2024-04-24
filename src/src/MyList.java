@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 public interface MyList<T> extends Iterable<T> {
     void add(T item);
     void set(int index, T item);
@@ -9,7 +7,7 @@ public interface MyList<T> extends Iterable<T> {
     T get(int index);
     T getFirst();
     T getLast();
-    void remove(int index);
+    T remove(int index);
     void removeFirst();
     void removeLast();
     void sort();
