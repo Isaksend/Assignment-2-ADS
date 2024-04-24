@@ -55,5 +55,15 @@ public class Main {
         System.out.println("The peek of stack: " + stack.peek());
         stack.pop();
         System.out.println("The peek of stack: " + stack.peek());
+        MyQueue<String> queue = new MyQueue<>();
+        // Add element to the queue
+        queue.enqueue("1");
+        queue.enqueue("2");
+        queue.enqueue("3");
+        // Printing first element without removing
+        System.out.println("In the start of the queue: " + queue.peek());
+        queue.enqueue("4");
+        queue.dequeue();
+        System.out.println("In the start of the queue right now: " + queue.peek());
     }
 }
