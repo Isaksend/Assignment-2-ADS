@@ -65,5 +65,25 @@ public class Main {
         queue.enqueue("4");
         queue.dequeue();
         System.out.println("In the start of the queue right now: " + queue.peek());
+        // Create a MinHeap with an initial capacity
+        MyMinHeap minHeap = new MyMinHeap(10);
+
+        // Add elements to the heap
+        minHeap.add(15);
+        minHeap.add(10);
+        minHeap.add(20);
+        minHeap.add(17);
+        minHeap.add(8);
+
+        // Display the minimum element without removing it
+        System.out.println("Minimum element: " + minHeap.peek());
+
+        // Remove elements one by one and display them
+        System.out.println("Removing elements:");
+        while (minHeap.size > 0) {
+            System.out.println(minHeap.poll());
+        }
+
+
     }
 }
