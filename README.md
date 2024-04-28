@@ -1,5 +1,5 @@
 # Assignment-2-ADS
-#Overview
+# Overview
 This GitHub repository contains implementations of various fundamental data structures in Java. These include array lists, linked lists, stacks, queues, and min heaps. Each data structure is generic and designed to provide a practical understanding of its operations and internal mechanics.
 
 Data Structures Implemented
@@ -40,3 +40,41 @@ Poll to remove and return the smallest element
 Peek to view the smallest element without removal
 Getting Started
 To use these data structures in your Java projects, include the respective Java files in your project directory and ensure your project is set up to compile Java code.
+
+
+# Examples:
+
+// Example of using MyArrayList
+MyArrayList<Integer> arrayList = new MyArrayList<>();
+arrayList.add(1);
+arrayList.add(2);
+arrayList.sort();
+System.out.println(arrayList.get(0));  // Output will be sorted elements
+
+// Example of using MyLinkedList
+MyLinkedList<String> linkedList = new MyLinkedList<>();
+linkedList.addFirst("Hello");
+linkedList.addLast("World");
+System.out.println(linkedList.getFirst());  // Output: Hello
+
+// Example of using MyStack
+MyStack<Double> stack = new MyStack<>();
+stack.push(3.14);
+System.out.println(stack.peek());  // Output: 3.14
+
+// Example of using MyQueue
+MyQueue<Character> queue = new MyQueue<>();
+queue.enqueue('A');
+queue.dequeue();
+System.out.println(queue.isEmpty());  // Output: true
+
+// Example of using MyMinHeap
+MyMinHeap minHeap = new MyMinHeap(10);
+minHeap.add(10);
+minHeap.add(5);
+System.out.println(minHeap.peek());  // Output: 5
+
+
+
+# Contributing
+Contributions are welcome! Please feel free to submit pull requests, or open issues to suggest improvements or add new features.
