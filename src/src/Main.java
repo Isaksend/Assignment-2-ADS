@@ -83,7 +83,5 @@ public class Main {
         while (minHeap.size > 0) {
             System.out.println(minHeap.poll());
         }
-
-
     }
 }

@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class MyMinHeap {
     //initial parameters
     private int[] heap;
-    private int size;
+    protected int size;
     private int capacity;
     // Constructor to initialize the heap with a given capacity
     public MyMinHeap(int capacity) {
